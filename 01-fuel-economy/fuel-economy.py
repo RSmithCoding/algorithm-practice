@@ -2,21 +2,27 @@
 A van’s fill-ups are stored as (miles driven, litres put in). Work out the MPG for each fill-up, 
 the best and worst, and the overall average. UK MPG uses 4.546 litres per gallon."""
 
+input = [(412, 45.2), (380, 44.0), (455, 47.5)]
+
 def getmpg(miles, litres):
     gallons = litres / 4.546
     mpg = miles / gallons
-    return mpg
+    return mpg, gallons
 
 x = 1
 mpg_list = []
+total_miles = []
+total_gallons = []
 
 for van in input:
-    mpg = getmpg(van[0],van[1])
+    mpg, gallons = getmpg(van[0],van[1])
     print(f"Fill up {x} shows {mpg:.2f} mpg")
     x = x + 1
     mpg_list.append(mpg)
+    total_miles.append(van[0])
+    total_gallons.append(gallons)
 
-average = sum(mpg_list) / len(mpg_list)
+average = sum(total_miles) / sum(total_gallons)
 
 print("")
 print(f"The average mpg for the fill ups is {average:.1f}\n")

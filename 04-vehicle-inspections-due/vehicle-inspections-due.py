@@ -10,7 +10,8 @@ print(today)
 
 print(f"{today.day}/{today.month}/{today.year}")
 
-
+insp_overdue = {}
+insp_next_seven_days = {}
 
 print(plus_days)
 
@@ -30,6 +31,8 @@ def add_time_weeks(date):
     return_date = temp_date + timedelta(weeks=6)
     return return_date
 
+
+
 print("Last Insp Dates:\n")
 
 for key in vehicle_last_insp:
@@ -40,3 +43,18 @@ print("\nNext insp dates:\n")
 for key in vehicle_last_insp:
     new_date = add_time_weeks(vehicle_last_insp[key])
     print(key, new_date.strftime("%d/%m/%y"))
+
+    if new_date < today:
+        #INSPECTION OVER DUE
+        print(f"{key} is over due inspection")
+        continue
+    elif today >= new_date <= plus_days:
+        #INSP IN NEXT 7 DAYS
+        print(f"{key} is dues in next 7 days")
+        continue
+
+
+print("\nThe following Inspections are OVERDUE:\n")
+print(insp_overdue) 
+print("\nThe following Inspections are due in the NEXT 7 DAYS:\n")
+print(insp_next_seven_days)       

@@ -6,20 +6,14 @@ from datetime import datetime, timedelta
 today = datetime.now()
 plus_days = today + timedelta(days=7)
 
-print(today)
-
-print(f"{today.day}/{today.month}/{today.year}")
-
 insp_overdue = {}
 insp_next_seven_days = {}
-
-print(plus_days)
 
 vehicle_last_insp = {
     "Reg": "1/11/26",
     "Reg2": "15/10/26",
-    "Reg3": "5/10/26",
-    "Reg4": "8/10/26",
+    "Reg3": "4/10/26",
+    "Reg4": "6/10/26",
     "Reg5": "30/09/26",
     "Reg6": "20/08/26",
     "Reg7": "18/10/26",
@@ -47,14 +41,16 @@ for key in vehicle_last_insp:
     if new_date < today:
         #INSPECTION OVER DUE
         print(f"{key} is over due inspection")
-        continue
-    elif today >= new_date <= plus_days:
+        insp_overdue.update(key,)
+        
+#    elif today >= new_date <= plus_days:
+    elif new_date >= today and new_date <= plus_days:    
         #INSP IN NEXT 7 DAYS
-        print(f"{key} is dues in next 7 days")
-        continue
+        print(f"{key} is due in next 7 days")
+        
 
 
 print("\nThe following Inspections are OVERDUE:\n")
 print(insp_overdue) 
 print("\nThe following Inspections are due in the NEXT 7 DAYS:\n")
-print(insp_next_seven_days)       
+print(insp_next_seven_days)    

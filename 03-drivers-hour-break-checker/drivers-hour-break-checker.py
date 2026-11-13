@@ -8,21 +8,18 @@ driving_count = 0
 
 driving_limit = ((4 * 60) + 30)
 
-print(driving_limit)
-
-print(driving_log)
-
 for record in driving_log:
     if record[0] == "drive":
-        print(record[0],record[1])
+        print(f"Drove for {record[1]} minutes")
         driving_count = driving_count + record[1]
         if driving_count > driving_limit:
-            print("Driver has went over drive limit at:")
-            print(record[0], record[1])
-
-
+            print("\nDriver has went over drive limit at:\n")
+            print(f"Drove for {record[1]} minutes")
+            
 """the real rule lets the 45 minutes be split into 15 then 30. With that rule, this day is legal. 
 Change your code to handle it."""
+
+print("*" * 80)
 
 driving_log2 = [("drive", 120), ("break", 15), ("drive", 150), ("break", 30), ("drive", 100)]
 
@@ -31,16 +28,13 @@ break_count = 0
 
 driving_limit2 = ((4 * 60) + 30)
 
-print(driving_limit2)
 
 
 for record in driving_log2:
     if record[0] == "drive":
-        print(record[0], record[1])
         driving_count2 = driving_count2 + record[1]
-        print(driving_count2)
+        print(f"Drove for {driving_count2} minutes\n")
         if driving_count2 > driving_limit2:
-            print(f"driving count 2: {driving_count2}")
             if break_count >= 45:
                 print("Driver has gone over limit but had enough break therefore legal")
                 break
@@ -48,7 +42,5 @@ for record in driving_log2:
                 print("Driver has gone over limit and not had enough break!")
                 break
     elif record[0] == "break":
-        print(record[0], record[1])
         break_count = break_count + record[1]
-        print(break_count)
-    
+        print(f"Had a break for {break_count} minutes\n")

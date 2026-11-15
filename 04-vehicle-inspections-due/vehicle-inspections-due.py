@@ -8,16 +8,17 @@ plus_days = today + timedelta(days=7)
 
 insp_overdue = {}
 insp_next_seven_days = {}
+insp_due_seven_days = []
 
 vehicle_last_insp = {
     "Reg": "1/11/26",
-    "Reg2": "15/10/26",
-    "Reg3": "4/10/26",
-    "Reg4": "6/10/26",
+    "Reg2": "17/10/26",
+    "Reg3": "11/10/26",
+    "Reg4": "10/10/26",
     "Reg5": "30/09/26",
     "Reg6": "20/08/26",
-    "Reg7": "18/10/26",
-    "Reg8": "17/09/26",
+    "Reg7": "8/10/26",
+    "Reg8": "6/10/26",
 }
 
 def add_time_weeks(date):
@@ -40,17 +41,17 @@ for key in vehicle_last_insp:
 
     if new_date < today:
         #INSPECTION OVER DUE
-        print(f"{key} is over due inspection")
-        insp_overdue.update(key,)
+        insp_overdue.update({key: new_date})
         
-#    elif today >= new_date <= plus_days:
     elif new_date >= today and new_date <= plus_days:    
         #INSP IN NEXT 7 DAYS
-        print(f"{key} is due in next 7 days")
-        
-
+        insp_due_seven_days.append([key, new_date])
+    
+insp_due_seven_days.sort(key=lambda item:item[1])
 
 print("\nThe following Inspections are OVERDUE:\n")
-print(insp_overdue) 
+for key in insp_overdue:
+    print(key, insp_overdue[key].strftime("%d/%m/%y"))
 print("\nThe following Inspections are due in the NEXT 7 DAYS:\n")
-print(insp_next_seven_days)    
+for i in insp_due_seven_days:
+    print(i[0],i[1].strftime("%d/%m/%y"))

@@ -3,6 +3,8 @@
 
 orders = []
 check_list = check_list = orders
+list = []
+list_copy = []
 
 
 def order_gen():
@@ -25,18 +27,60 @@ def linear_search(order_number):
         else:
             continue
 
-def binary_search(order_number):
-    first = int(str(order_number)[0])
-    
-    print(first)
+
+
+def get_counts(list_to_count):
+    counter = 0
+    while len(list_to_count) > 2:
+        list_len = int(round(len(list_to_count)) / 2)
+        del list_copy[0:list_len]
+        counter = counter + 1
+    return counter    
+
+def binary_search(order_number,counter):
+        steps = 0
+
+        for i in range(counter):
+            half = round(len(list)/2)
+            
+            if order_number <= list[half]:
+                print(list[0:half+1])
+                steps = steps + 1
+                del list[half+1:len(list)]
+            
+            else:
+                print(list[half+1:len(list)])
+                steps = steps + 1
+                del list[0:half+1]
+            
+
+
 
 order_gen()
+list = orders.copy()
+list_copy = orders.copy()
+list.sort()
 
 number_to_search = 8392
+
+counter = get_counts(list_copy)
+
+
+print(f"The list will need {counter} steps to narrow search")
 
 print("Search 1: Linear Search:\n")
 linear_search(number_to_search)          
 print("\nSearch 2: Binary Search\n")
-binary_search(number_to_search)
+binary_search(number_to_search,counter)
 
-print(check_list)
+# if len(list) == 2:
+#     if number_to_search < list[1]:
+#         steps = steps + 1
+#         del list[1]
+#         print(f"Order {number_to_search} found in list {list} with {steps} steps")
+        
+# else:
+#     print(f"order {number_to_search} has been found in list {list} with {steps} steps **else")
+
+
+

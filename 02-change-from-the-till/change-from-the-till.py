@@ -7,24 +7,28 @@ paid = float(20.00)
 
 change_available = (2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1)
 
-price_in_pence = int(price * 100)
+price_in_pence = round(price * 100)
 
-paid_in_pence = int(paid * 100)
+paid_in_pence = round(paid * 100)
 
 balance = paid_in_pence - price_in_pence
 
 change_given = []
 
+
+
+
 for change in change_available:
-    if balance - change < 0:
-        continue
+    while True:
+        if balance - change >= 0:
+            change_given.append(change)
+            balance = balance - change
+        elif balance - change < 0:
+            break
+        elif balance == 0:
+            break
         
-    elif balance - change >= 0:
-        change_given.append(change)
-        balance = balance - change
-        
-    elif balance == 0:
-        break
+
 
 print("Here is your change..\n")
 
@@ -36,4 +40,4 @@ for change in change_given:
         print(f"{change}p")
         continue
 
-print(f"\nTotal Change: £{(paid_in_pence - price_in_pence) / 100}p")
+print(f"\nTotal Change: £{(float(paid_in_pence - price_in_pence) / 100):.2f}p")
